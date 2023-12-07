@@ -1,0 +1,22 @@
+serve: .
+snapshots:
+  - url: https://dev-principalcom.pantheonsite.io/
+    additionalSnapshots:
+     - name: menu
+       execute: "document.querySelector('button.pds-link').click()"
+  - url: https://dev-principalcom.pantheonsite.io/individuals
+  - url: https://dev-principalcom.pantheonsite.io/businesses
+  - url: https://dev-principalcom.pantheonsite.io/businesses/large-business
+  - url: https://dev-principalcom.pantheonsite.io/businesses/small-business
+  - url: https://dev-principalcom.pantheonsite.io/individuals/invest-retire/individual-retirement-account
+  - url: https://dev-principalcom.pantheonsite.io/individuals/build-your-knowledge
+  - url: https://dev-principalcom.pantheonsite.io/about-us/news-room
+  - url: https://dev-principalcom.pantheonsite.io/create-account
+  - url: https://dev-principalcom.pantheonsite.io/outreach/benefits-benefits
+  - url: https://dev-principalcom.pantheonsite.io/find-dentist
+  - url: https://dev-principalcom.pantheonsite.io/contact-us
+  - url: https://dev-principalcom.pantheonsite.io/dental-providers
+  - url: https://dev-principalcom.pantheonsite.io/were-here-help
+  - url: https://dev-principalcom.pantheonsite.io/help/help-individuals/find-form
+  - url: https://dev-principalcom.pantheonsite.io/financial-inclusion
+    waitForTimeout: 1000
