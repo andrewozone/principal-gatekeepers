@@ -17,6 +17,6 @@ jobs:
       - name: Percy Step 3
         run: npm install --save-dev @percy/cli
       - name: Percy Step 4
-        run: npx percy_automation_v1 percy snapshot snapshots.yml
+        run: npx percy snapshot snapshots.yml
         env:
           PERCY_TOKEN: $
