@@ -8,11 +8,15 @@ jobs:
     name: CI
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Percy Step 1
+        uses: actions/checkout@v3
+      - name: Percy Step 2
+        uses: actions/setup-node@v3
         with:
           node-version: '14'
-      - run: npm install --save-dev @percy/cli
-      - run: npx PERCY_BRANCH=percy_automation_v1 percy snapshot snapshots.yml
+      - name: Percy Step 3
+        run: npm install --save-dev @percy/cli
+      - name: Percy Step 4
+        run: npx PERCY_BRANCH=percy_automation_v1 percy snapshot snapshots.yml
         env:
           PERCY_TOKEN: $
