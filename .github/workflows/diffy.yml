@@ -1,6 +1,18 @@
 name: Diffy
  
 on:
+  push:
+    branches:
+      # Run on main branch only.
+      - 'main'
+    tags-ignore:
+      # Ignore all tags.
+      - '**'
+  pull_request:
+    # Because adding or removing labels could change if the job is run, we
+    # add those the default list of pull request events.
+    # @see https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#pull_request
+    types: [opened, reopened, synchronize, ready_for_review, labeled, unlabeled]
   workflow_dispatch:
  
 # Ensure that the provided GitHub token will have permission to post comments.
