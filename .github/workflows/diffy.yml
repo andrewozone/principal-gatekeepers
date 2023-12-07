@@ -1,0 +1,49 @@
+name: Diffy
+ 
+on:
+  push:
+    branches:
+      # Run on main branch only.
+      - 'main'
+    tags-ignore:
+      # Ignore all tags.
+      - '**'
+  pull_request:
+    # Because adding or removing labels could change if the job is run, we
+    # add those the default list of pull request events.
+    # @see https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#pull_request
+    types: [opened, reopened, synchronize, ready_for_review, labeled, unlabeled]
+  workflow_dispatch:
+ 
+# Ensure that the provided GitHub token will have permission to post comments.
+permissions:
+  contents: read
+  pull-requests: write
+ 
+defaults:
+  run:
+    shell: bash  
+ 
+jobs:
+  compare:
+    name: Compare
+    steps:
+      - name: Setup PHP and install Terminus
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          coverage: none
+      - name: Trigger Diffy testing
+        env:
+          diffy_api_key: '${{ secrets.DIFFY_API_KEY }}'
+          diffy_project_id: '${{ secrets.DIFFY_PROJECT_ID }}'
+        run: |
+          wget https://github.com/diffywebsite/diffy-cli/releases/latest/download/diffy.phar
+ 
+          # Authenticate.
+          php diffy.phar auth:login $diffy_api_key
+ 
+          echo ${{ github.event.pull_request.head.sha }}
+ 
+          # Compare with commit sha so Diffy's github check posts the results.
+          php diffy.phar project:compare $diffy_project_id baseline custom --env2Url="https://dev-principalcom.pantheonsite.io" --commit-sha="${{ github.event.pull_request.head.sha }}"
