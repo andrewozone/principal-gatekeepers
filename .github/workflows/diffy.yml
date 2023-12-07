@@ -27,6 +27,7 @@ defaults:
 jobs:
   compare:
     name: Compare
+    runs-on: ubuntu-latest
     steps:
       - name: Setup PHP and install Terminus
         uses: shivammathur/setup-php@v2
