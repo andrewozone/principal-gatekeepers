@@ -19,4 +19,4 @@ jobs:
       - name: Percy Step 4
         run: npx percy snapshot snapshots.yml
         env:
-          PERCY_TOKEN: $
+          PERCY_TOKEN: '${{ secrets.PERCY_TOKEN }}'
